@@ -1,3 +1,6 @@
+from array import array
+
+
 def average(signals):
     return sum(signals) / len(signals)
 
@@ -15,6 +18,20 @@ def correlation(sigs1, sigs2):
     m2 = average(sigs2)
 
     res = []
+    for i in range(l):
+        res.append((sigs1[i] - m1) * (sigs2[i] - m2))
+
+    return sum(res) / (l - 1)
+
+
+def correlation_array(sigs1, sigs2):
+    l = len(sigs1)
+    assert l == len(sigs2)
+
+    m1 = average(sigs1)
+    m2 = average(sigs2)
+
+    res = array("f")
     for i in range(l):
         res.append((sigs1[i] - m1) * (sigs2[i] - m2))
 
